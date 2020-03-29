@@ -31,11 +31,11 @@ public class Character
     
     private int arrows; //Number of die player does not re-roll
     
-    private ArrayList<Integer>dice;
+    //private ArrayList<Dice>dice;
     
     
     
-    private static int numPlayers = 8; //Number of players determined by the user 
+    //private static int numPlayers = 8; //Number of players determined by the user 
     //private int randNum; 
     //private int range; 
 
@@ -91,7 +91,6 @@ public class Character
 
     }
     
-
     public static void initializeAllCharacters() //Initializes all player objects and assigns them to an ArrayList
     {
         Character char1 = new Character(8, 1, 0, "Bart Cassidy");
@@ -190,7 +189,7 @@ public class Character
         dupeList.add(char16);
     }
 
-    public static void assignCharacters() //Creates an ArrayList of randomly assigned characters, final version will pass in numPlayers
+    public static void assignCharacters(int numPlayers) //Creates an ArrayList of randomly assigned characters, final version will pass in numPlayers
     {
         Character.initializeAllCharacters(); 
         
@@ -214,7 +213,7 @@ public class Character
     }
     
     
-    public static void assignRole() //Randomly assigns a role to each character, final version will pass in numPlayers
+    public static void assignRole(int numPlayers) //Randomly assigns a role to each character, final version will pass in numPlayers
     {
         //Roles: 1: Sheriff 2: Deputy 3: Outlaw 4: Renegade
         
