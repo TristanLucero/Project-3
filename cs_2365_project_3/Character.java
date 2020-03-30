@@ -311,6 +311,38 @@ public class Character
     }
     
     
+    public void addLife() //Adds life to a specific character
+    {
+        this.health ++; 
+    }
+    
+    
+    public void loseLife() //Subtracts life from a specific charatcer 
+    {
+        this.health --; 
+    }
+    
+    
+    public boolean isAlive() //Checks to see if a player is alive 
+    {
+        if (this.health == 0)
+        {
+            isAlive = false; 
+        }
+        else 
+            isAlive = true; 
+        
+        return isAlive; 
+    }
+    
+    
+    public void addArrow() //Adds an arrow to the player 
+    {
+        this.arrows ++; 
+        //Will need to also subract 1 from the piles of arrows 
+    }
+
+    
     public int removeOneArrow(){
         
         this.arrows--;
