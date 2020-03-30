@@ -44,7 +44,11 @@ public class Character
     public static ArrayList<Character> playerList = new ArrayList();
     public static ArrayList<Character> dupeList = new ArrayList(16);
     
-    public Character(int healthPts, int abilityCode, int roleType, String characterName){
+    public Character(int user, boolean alive, int healthPts, int abilityCode, int roleType, int arrowCount, String characterName){
+        
+        this.setUser(user);
+        
+        this.setLifeStatus(alive);
         
         this.setHealth(healthPts);
         
@@ -52,7 +56,23 @@ public class Character
         
         this.setRole(roleType);
         
+        this.setArrowCount(arrowCount);
+        
         this.setName(characterName);
+    }
+    
+    
+    public void setUser(int user){
+        
+        this.user = user;
+        
+    }
+    
+    
+    public void setLifeStatus(boolean alive){
+        
+        this.isAlive = alive;
+        
     }
     
     
@@ -76,6 +96,13 @@ public class Character
         
     }
     
+
+    public void setArrowCount(int arrowCount){
+        
+        this.arrows = arrowCount;
+        
+    }
+    
     
     public void setName(String characterName){
         
@@ -87,72 +114,72 @@ public class Character
     @Override
     public String toString(){
         
-        return "Name: " + this.name + ", Health: " + this.health + ", Ability: " + this.ability + ", Role: " + this.role;
+        return "Control: " + ((this.user == 0) ? "User":"CPU") + ", Name: " + this.name + ", Alive? " + this.isAlive + ", Health: " + this.health + ", Ability: " + this.ability + ", Role: " + this.role + ", Arrow Count: " + this.arrows;
 
     }
-    
+            
     public static void initializeAllCharacters() //Initializes all player objects and assigns them to an ArrayList
     {
-        Character char1 = new Character(8, 1, 0, "Bart Cassidy");
+        Character char1 = new Character(1, true, 8, 1, 0, 0, "Bart Cassidy");
         //Special Ability: Can take an arrow instead of losing a lifepoint only to shoot 1 or 2 
        
 
-        Character char2 = new Character(9, 2, 0, "Paul Regret");
+        Character char2 = new Character(1, true, 9, 2, 0, 0, "Paul Regret");
         //Special Ability: Never lose lifepoints to the gattling gun 
 
-        Character char3 = new Character(8, 3, 0, "Black Jack");
+        Character char3 = new Character(1, true, 8, 3, 0, 0, "Black Jack");
         //Special Ability: Can re roll dynamite if 2 or less were rolled 
         
 
-        Character char4 = new Character(8, 4, 0, "Pedro Ramirez");
+        Character char4 = new Character(1, true, 8, 4, 0, 0, "Pedro Ramirez");
         //Special Ability: When you lose a lifepoint, you can discard an arrow 
         
 
-        Character char5 = new Character(8, 5, 0, "Calamity Jane");
+        Character char5 = new Character(1, true, 8, 5, 0, 0, "Calamity Jane");
         //Special Ability: Can use a shoot 1 as a 2 and vice versa 
     
 
-        Character char6 = new Character(9, 6, 0, "Rose Doolan");
+        Character char6 = new Character(1, true, 9, 6, 0, 0, "Rose Doolan");
         //Special Ability: Can use shoot 1 and 2 for players sitting one place further 
      
 
-        Character char7 = new Character(7, 7, 0, "El Gringo");
+        Character char7 = new Character(1, true, 7, 7, 0, 0, "El Gringo");
         //Special Ability: When a player causes you to lose one or more lifepoints they take an arrow 
         
 
-        Character char8 = new Character(8, 8, 0, "Sid Ketchum");
+        Character char8 = new Character(1, true, 8, 8, 0, 0, "Sid Ketchum");
         //Special Ability: At the start of your turn, any player of your choice including you gains 1 lifepoint 
         
 
-        Character char9 = new Character(9, 9, 0, "Jesse Jones");
+        Character char9 = new Character(1, true, 9, 9, 0, 0, "Jesse Jones");
         //Special Ability: If you have 4 or less lifepoints beer heals 2 lifepoints 
         
 
-        Character char10 = new Character(8, 10, 0, "Slab The Killer");
+        Character char10 = new Character(1, true, 8, 10, 0, 0, "Slab The Killer");
         //Special Ability: Can use beer as a shoot 1 or 2, takes 2 lifepoints away from targetted player 
         
 
-        Character char11 = new Character(7, 11, 0, "Jourdonnais");
+        Character char11 = new Character(1, true, 7, 11, 0, 0, "Jourdonnais");
         //Special Ability: Never lose more than 1 lifepoint to indians 
         
 
-        Character char12 = new Character(8, 12, 0, "Suzy Lafayette");
+        Character char12 = new Character(1, true, 8, 12, 0, 0, "Suzy Lafayette");
         //Special Ability: If you fail to roll any shoot 1 or 2, you gain 2 lifepoints 
         
 
-        Character char13 = new Character(7, 13, 0, "Kit Carlson");
+        Character char13 = new Character(1, true, 7, 13, 0, 0, "Kit Carlson");
         //Special Ability: For each gattling you roll you can remove one arrow from any player, including yourself if 3 gattlings are rolled 
         
 
-        Character char14 = new Character(9, 14, 0, "Vulture Sam");
+        Character char14 = new Character(1, true, 9, 14, 0, 0, "Vulture Sam");
         //Special Ability: When a player is eliminated you gain 2 lifepoints 
         
 
-        Character char15 = new Character(8, 15, 0, "Lucky Duke");
+        Character char15 = new Character(1, true, 8, 15, 0, 0, "Lucky Duke");
         //Special Ability: You get one extra re-roll 
         
 
-        Character char16 = new Character(8, 16, 0, "Willy The Kid");
+        Character char16 = new Character(1, true, 8, 16, 0, 0, "Willy The Kid");
         //Special Ability: Only need s2 gattling rolls to use the gattling gun 
         
 
@@ -240,7 +267,13 @@ public class Character
             roles = new ArrayList<Integer>(Arrays.asList(1,2,2,3,3,3,4)); 
         
         else if(numPlayers == 8)
-            roles = new ArrayList<Integer>(Arrays.asList(1,2,2,3,3,3,4,4)); 
+            roles = new ArrayList<Integer>(Arrays.asList(1,2,2,3,3,3,4,4));
+        
+        else {
+            numPlayers = 4;
+            roles = new ArrayList<Integer>(Arrays.asList(1,3,3,4));
+        }
+            
         
         range = numPlayers; 
             
@@ -256,20 +289,62 @@ public class Character
             range--; 
                 
             //Test case to display the randomly assigned charcters 
-            System.out.println(player.toString());
+            //System.out.println(player.toString());
                 
         }
+        
     }
+    
+    
+    public static void assignUser(int numPlayers){
+        
+        int range = numPlayers;
+        
+        Random rand = new Random();
+        
+        int randNum = rand.nextInt(range);
+        
+        System.out.println(randNum);
+        
+        Character userCharacter = playerList.get(randNum);
+        
+        userCharacter.user = 0;
+       
+    }
+    
+    
+    public void removeOneArrow(){
+        
+        this.arrows--;
+        
+    }
+    
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) //Driver for testing the class 
     {
-        //Character test = new Character();
-        System.out.println("         =========Player List=========");
+        int i;
+        
+        int numPlayers = 5;
+        
+        Character player;
+        
         Character.initializeAllCharacters();
-        test.create();
+         
+        Character.assignCharacters(numPlayers);
+        
+        Character.assignRole(numPlayers);
+        
+        Character.assignUser(numPlayers);
+
+        for (i = 0; i < numPlayers; i++){
+            
+            player = playerList.get(i);
+            
+            System.out.println(player.toString());
+        }
 
     }
 
