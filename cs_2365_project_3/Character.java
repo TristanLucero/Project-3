@@ -304,8 +304,6 @@ public class Character
         
         int randNum = rand.nextInt(range);
         
-        System.out.println(randNum);
-        
         Character userCharacter = playerList.get(randNum);
         
         userCharacter.user = 0;
@@ -313,10 +311,22 @@ public class Character
     }
     
     
-    public void removeOneArrow(){
+    public int removeOneArrow(){
         
         this.arrows--;
         
+        return 1;  // Returns 1 so that "one arrow" can be added back to pile of arrows in the game
+        
+    }
+    
+    
+    public int removeAllArrows(){
+        
+        int addBackArrows = this.arrows;
+        
+        this.arrows = 0;
+        
+        return addBackArrows;  // Returns number of arrows removed so that the value can be added back to the pile in the game
     }
     
 
