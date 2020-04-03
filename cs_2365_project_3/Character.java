@@ -21,6 +21,8 @@ public class Character
     
     private boolean isAlive;
     
+    private boolean helpSheriff = false; //Tells the AI to help the sheriff 
+    
     private String name; //Character name 
     
     private int role; //The role assigned to a character, Sherrif, Deputy, Outlaw or Renegade
