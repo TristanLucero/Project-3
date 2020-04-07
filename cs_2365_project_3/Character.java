@@ -4,7 +4,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cs_2365_project_3;
+//package cs_2365_project_3;
 
 import java.util.Random; 
 import java.util.Arrays; 
@@ -21,8 +21,6 @@ public class Character
     
     private boolean isAlive;
     
-    private boolean helpSheriff = false; //Tells the AI to help the sheriff 
-    
     private String name; //Character name 
     
     private int role; //The role assigned to a character, Sherrif, Deputy, Outlaw or Renegade
@@ -32,6 +30,10 @@ public class Character
     private int ability; //Character special ability
     
     private int arrows; //Number of die player does not re-roll
+    
+    private boolean helpedSheriff; //Indicates whether or not the character has helped the Sheriff by providing him beer (health)
+    
+    //private int position;  //Position of Character object in game
     
     //private ArrayList<Dice>dice;
     
@@ -46,7 +48,7 @@ public class Character
     public static ArrayList<Character> playerList = new ArrayList();
     public static ArrayList<Character> dupeList = new ArrayList(16);
     
-    public Character(int user, boolean alive, int healthPts, int abilityCode, int roleType, int arrowCount, String characterName){
+    public Character(int user, boolean alive, int healthPts, int abilityCode, int roleType, int positionNum, int arrowCount, String characterName, boolean didHelp){
         
         this.setUser(user);
         
@@ -61,9 +63,11 @@ public class Character
         this.setArrowCount(arrowCount);
         
         this.setName(characterName);
+        
+        this.setHelpedSheriff(didHelp);
     }
     
-    
+   
     public void setUser(int user){
         
         this.user = user;
@@ -113,75 +117,142 @@ public class Character
     }
     
     
+    public void setHelpedSheriff(boolean didHelp){
+        
+        this.helpedSheriff = didHelp;
+        
+    }
+    
+    
+    public int getUser(){
+        
+        return this.user;
+        
+    }
+    
+    
+    public boolean getIsAlive(){
+        
+        return this.isAlive;
+        
+    }
+    
+    
+    public String getName(){
+        
+        return this.name;
+        
+    }
+    
+    
+    public int getRoleNum(){
+        
+        return this.role;
+        
+    }
+    
+    
+    public int getHealth(){
+        
+        return this.health;
+        
+    }
+    
+    
+    public int getAbilityNum(){
+        
+        return this.ability;
+        
+    }
+    
+    
+    public int getArrowCount(){
+        
+        return this.arrows;
+        
+    }
+    
+    
+    public boolean getHelpedSheriff(){
+        
+        return this.helpedSheriff;
+        
+    }
+    
+    
     @Override
     public String toString(){
         
-        return "Control: " + ((this.user == 0) ? "User":"CPU") + ", Name: " + this.name + ", Alive? " + this.isAlive + ", Health: " + this.health + ", Ability: " + this.ability + ", Role: " + this.role + ", Arrow Count: " + this.arrows;
+        return "Control: " + ((this.user == 0) ? "User":"CPU") + ", Name: " + this.name + ", Alive? " + this.isAlive + ", Health: " + this.health + ", Ability: " + 
+                this.ability + ", Role: " + this.role + ", Arrow Count: " + this.arrows + ", Helped Sheriff? " + this.helpedSheriff;
 
     }
+    
+    // Constructor Arguments:
+    // int user, boolean alive, int healthPts, int abilityCode, int roleType, int positionNum, int arrowCount, String characterName
             
     public static void initializeAllCharacters() //Initializes all player objects and assigns them to an ArrayList
     {
-        Character char1 = new Character(1, true, 8, 1, 0, 0, "Bart Cassidy");
+        Character char1 = new Character(1, true, 8, 1, 0, 0, 0, "Bart Cassidy", false);
         //Special Ability: Can take an arrow instead of losing a lifepoint only to shoot 1 or 2 
        
 
-        Character char2 = new Character(1, true, 9, 2, 0, 0, "Paul Regret");
+        Character char2 = new Character(1, true, 9, 2, 0, 0, 0, "Paul Regret", false);
         //Special Ability: Never lose lifepoints to the gattling gun 
 
-        Character char3 = new Character(1, true, 8, 3, 0, 0, "Black Jack");
+        Character char3 = new Character(1, true, 8, 3, 0, 0, 0, "Black Jack", false);
         //Special Ability: Can re roll dynamite if 2 or less were rolled 
         
 
-        Character char4 = new Character(1, true, 8, 4, 0, 0, "Pedro Ramirez");
+        Character char4 = new Character(1, true, 8, 4, 0, 0, 0, "Pedro Ramirez", false);
         //Special Ability: When you lose a lifepoint, you can discard an arrow 
         
 
-        Character char5 = new Character(1, true, 8, 5, 0, 0, "Calamity Jane");
+        Character char5 = new Character(1, true, 8, 5, 0, 0, 0, "Calamity Jane", false);
         //Special Ability: Can use a shoot 1 as a 2 and vice versa 
     
 
-        Character char6 = new Character(1, true, 9, 6, 0, 0, "Rose Doolan");
+        Character char6 = new Character(1, true, 9, 6, 0, 0, 0, "Rose Doolan", false);
         //Special Ability: Can use shoot 1 and 2 for players sitting one place further 
      
 
-        Character char7 = new Character(1, true, 7, 7, 0, 0, "El Gringo");
+        Character char7 = new Character(1, true, 7, 7, 0, 0, 0, "El Gringo", false);
         //Special Ability: When a player causes you to lose one or more lifepoints they take an arrow 
         
 
-        Character char8 = new Character(1, true, 8, 8, 0, 0, "Sid Ketchum");
+        Character char8 = new Character(1, true, 8, 8, 0, 0, 0, "Sid Ketchum", false);
         //Special Ability: At the start of your turn, any player of your choice including you gains 1 lifepoint 
         
 
-        Character char9 = new Character(1, true, 9, 9, 0, 0, "Jesse Jones");
+        Character char9 = new Character(1, true, 9, 9, 0, 0, 0, "Jesse Jones", false);
         //Special Ability: If you have 4 or less lifepoints beer heals 2 lifepoints 
         
 
-        Character char10 = new Character(1, true, 8, 10, 0, 0, "Slab The Killer");
+        Character char10 = new Character(1, true, 8, 10, 0, 0, 0, "Slab The Killer", false);
         //Special Ability: Can use beer as a shoot 1 or 2, takes 2 lifepoints away from targetted player 
         
 
-        Character char11 = new Character(1, true, 7, 11, 0, 0, "Jourdonnais");
+        Character char11 = new Character(1, true, 7, 11, 0, 0, 0, "Jourdonnais", false);
         //Special Ability: Never lose more than 1 lifepoint to indians 
         
 
-        Character char12 = new Character(1, true, 8, 12, 0, 0, "Suzy Lafayette");
+        Character char12 = new Character(1, true, 8, 12, 0, 0, 0, "Suzy Lafayette", false);
         //Special Ability: If you fail to roll any shoot 1 or 2, you gain 2 lifepoints 
         
 
-        Character char13 = new Character(1, true, 7, 13, 0, 0, "Kit Carlson");
+        Character char13 = new Character(1, true, 7, 13, 0, 0, 0, "Kit Carlson", false);
         //Special Ability: For each gattling you roll you can remove one arrow from any player, including yourself if 3 gattlings are rolled 
         
 
-        Character char14 = new Character(1, true, 9, 14, 0, 0, "Vulture Sam");
+        Character char14 = new Character(1, true, 9, 14, 0, 0, 0, "Vulture Sam", false);
         //Special Ability: When a player is eliminated you gain 2 lifepoints 
         
 
-        Character char15 = new Character(1, true, 8, 15, 0, 0, "Lucky Duke");
+        Character char15 = new Character(1, true, 8, 15, 0, 0, 0, "Lucky Duke", false);
         //Special Ability: You get one extra re-roll 
         
 
-        Character char16 = new Character(1, true, 8, 16, 0, 0, "Willy The Kid");
+        Character char16 = new Character(1, true, 8, 16, 0, 0, 0, "Willy The Kid", false);
         //Special Ability: Only need s2 gattling rolls to use the gattling gun 
         
 
@@ -218,6 +289,7 @@ public class Character
         dupeList.add(char16);
     }
 
+    
     public static void assignCharacters(int numPlayers) //Creates an ArrayList of randomly assigned characters, final version will pass in numPlayers
     {
         Character.initializeAllCharacters(); 
@@ -237,14 +309,13 @@ public class Character
             
             range--; 
         }
-        
-        //Character.assignRole(); 
+         
     }
     
     
     public static void assignRole(int numPlayers) //Randomly assigns a role to each character, final version will pass in numPlayers
     {
-        //Roles: 1: Sheriff 2: Deputy 3: Outlaw 4: Renegade
+        //Roles:   1: Sheriff;   2: Deputy;   3: Outlaw;   4: Renegade
         
         Character player; 
         
@@ -256,24 +327,27 @@ public class Character
         
         int randNum; 
         
-        if(numPlayers == 4)
-            roles = new ArrayList<Integer>(Arrays.asList(1,3,3,4));
+        if (numPlayers == 3){
+            roles = new ArrayList<>(Arrays.asList(2,3,4));
+            
+        }else if(numPlayers == 4)
+            roles = new ArrayList<>(Arrays.asList(1,3,3,4));
         
         else if(numPlayers == 5)
-            roles = new ArrayList<Integer>(Arrays.asList(1,2,3,3,4)); 
+            roles = new ArrayList<>(Arrays.asList(1,2,3,3,4)); 
         
         else if(numPlayers == 6)
-            roles = new ArrayList<Integer>(Arrays.asList(1,2,3,3,3,4)); 
+            roles = new ArrayList<>(Arrays.asList(1,2,3,3,3,4)); 
         
         else if(numPlayers == 7)
-            roles = new ArrayList<Integer>(Arrays.asList(1,2,2,3,3,3,4)); 
+            roles = new ArrayList<>(Arrays.asList(1,2,2,3,3,3,4)); 
         
         else if(numPlayers == 8)
-            roles = new ArrayList<Integer>(Arrays.asList(1,2,2,3,3,3,4,4));
+            roles = new ArrayList<>(Arrays.asList(1,2,2,3,3,3,4,4));
         
         else {
             numPlayers = 4;
-            roles = new ArrayList<Integer>(Arrays.asList(1,3,3,4));
+            roles = new ArrayList<>(Arrays.asList(1,3,3,4));
         }
             
         
@@ -300,33 +374,30 @@ public class Character
     
     public static void assignUser(int numPlayers){
         
-        int range = numPlayers;
+        playerList.get(0).user = 0;
         
-        Random rand = new Random();
-        
-        int randNum = rand.nextInt(range);
-        
-        Character userCharacter = playerList.get(randNum);
-        
-        userCharacter.user = 0;
-       
     }
     
     
     public void addLife() //Adds life to a specific character
     {
+        
         this.health ++; 
+        
     }
     
     
     public void loseLife() //Subtracts life from a specific charatcer 
     {
+        
         this.health --; 
+        
     }
     
     
     public boolean isAlive() //Checks to see if a player is alive 
     {
+        
         if (this.health == 0)
         {
             isAlive = false; 
@@ -335,10 +406,11 @@ public class Character
             isAlive = true; 
         
         return isAlive; 
+        
     }
     
     
-    public void addArrow() //Adds an arrow to the player 
+    /*public void addArrow() //Adds an arrow to the player 
     {
         this.arrows ++; 
         //Will need to also subract 1 from the piles of arrows 
@@ -361,6 +433,20 @@ public class Character
         this.arrows = 0;
         
         return addBackArrows;  // Returns number of arrows removed so that the value can be added back to the pile in the game
+    }*/
+    
+    
+    public void changeArrows(int numArrows){
+        
+        this.arrows += numArrows;
+        
+    }
+    
+    
+    public void shoot(Character shotPlayer){
+        
+        shotPlayer.loseLife();
+        
     }
     
 
