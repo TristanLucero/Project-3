@@ -25,7 +25,9 @@ public class Character
     
     private int role; //The role assigned to a character, Sherrif, Deputy, Outlaw or Renegade
     
-    private int health; //Health points for each charatcer 
+    private int health; //Health points for each charatcer
+    
+    private int maxHealth; //Maximum health points available to a given character (set at instantiation)
     
     private int ability; //Character special ability
     
@@ -33,38 +35,37 @@ public class Character
     
     private boolean helpedSheriff; //Indicates whether or not the character has helped the Sheriff by providing him beer (health)
     
-    //private int position;  //Position of Character object in game
+    private boolean shotSheriff; //Indicates whether or not the character has shot the Sheriff
     
-    //private ArrayList<Dice>dice;
-    
-    
-    
-    //private static int numPlayers = 8; //Number of players determined by the user 
-    //private int randNum; 
-    //private int range; 
 
-    //Random rand = new Random(); 
 
     public static ArrayList<Character> playerList = new ArrayList();
     public static ArrayList<Character> dupeList = new ArrayList(16);
     
-    public Character(int user, boolean alive, int healthPts, int abilityCode, int roleType, int positionNum, int arrowCount, String characterName, boolean didHelp){
+    public Character(int healthPts, int abilityCode, String characterName){
         
-        this.setUser(user);
+        this.setUser(1);
         
-        this.setLifeStatus(alive);
+        this.setLifeStatus(true);
         
         this.setHealth(healthPts);
         
+        // Initial health value passed into constructor is the maximum health value that a character can have
+        this.setMaxHealth(healthPts);  
+        
         this.setAbility(abilityCode);
         
-        this.setRole(roleType);
+        this.setRole(0);
         
-        this.setArrowCount(arrowCount);
+        this.setArrowCount(0);
         
         this.setName(characterName);
         
-        this.setHelpedSheriff(didHelp);
+        this.setHelpedSheriff(false);
+        
+        this.setShotSheriff(false);
+        
+        
     }
     
    
@@ -85,6 +86,14 @@ public class Character
     public void setHealth(int healthPts){
         
         this.health = healthPts;
+        
+    }
+    
+    
+    public void setMaxHealth(int maxHealthPts){
+        
+        
+        this.maxHealth = maxHealthPts;
         
     }
     
@@ -124,6 +133,13 @@ public class Character
     }
     
     
+    public void setShotSheriff(boolean didShoot){
+        
+        this.shotSheriff = didShoot;
+        
+    }
+    
+    
     public int getUser(){
         
         return this.user;
@@ -159,6 +175,13 @@ public class Character
     }
     
     
+    public int getMaxHealth(){
+        
+        return this.maxHealth;
+        
+    }
+    
+    
     public int getAbilityNum(){
         
         return this.ability;
@@ -180,6 +203,14 @@ public class Character
     }
     
     
+    public boolean getShotSheriff(){
+        
+        return this.shotSheriff;
+        
+    }
+    
+    
+    
     @Override
     public String toString(){
         
@@ -189,70 +220,70 @@ public class Character
     }
     
     // Constructor Arguments:
-    // int user, boolean alive, int healthPts, int abilityCode, int roleType, int positionNum, int arrowCount, String characterName
+    // int healthPts, int abilityCode, String characterName
             
     public static void initializeAllCharacters() //Initializes all player objects and assigns them to an ArrayList
     {
-        Character char1 = new Character(1, true, 8, 1, 0, 0, 0, "Bart Cassidy", false);
+        Character char1 = new Character(8, 1, "Bart Cassidy");
         //Special Ability: Can take an arrow instead of losing a lifepoint only to shoot 1 or 2 
        
 
-        Character char2 = new Character(1, true, 9, 2, 0, 0, 0, "Paul Regret", false);
+        Character char2 = new Character(9, 2, "Paul Regret");
         //Special Ability: Never lose lifepoints to the gattling gun 
 
-        Character char3 = new Character(1, true, 8, 3, 0, 0, 0, "Black Jack", false);
+        Character char3 = new Character(8, 3, "Black Jack");
         //Special Ability: Can re roll dynamite if 2 or less were rolled 
         
 
-        Character char4 = new Character(1, true, 8, 4, 0, 0, 0, "Pedro Ramirez", false);
+        Character char4 = new Character(8, 4, "Pedro Ramirez");
         //Special Ability: When you lose a lifepoint, you can discard an arrow 
         
 
-        Character char5 = new Character(1, true, 8, 5, 0, 0, 0, "Calamity Jane", false);
+        Character char5 = new Character(8, 5, "Calamity Jane");
         //Special Ability: Can use a shoot 1 as a 2 and vice versa 
     
 
-        Character char6 = new Character(1, true, 9, 6, 0, 0, 0, "Rose Doolan", false);
+        Character char6 = new Character(9, 6, "Rose Doolan");
         //Special Ability: Can use shoot 1 and 2 for players sitting one place further 
      
 
-        Character char7 = new Character(1, true, 7, 7, 0, 0, 0, "El Gringo", false);
+        Character char7 = new Character(7, 7, "El Gringo");
         //Special Ability: When a player causes you to lose one or more lifepoints they take an arrow 
         
 
-        Character char8 = new Character(1, true, 8, 8, 0, 0, 0, "Sid Ketchum", false);
+        Character char8 = new Character(8, 8, "Sid Ketchum");
         //Special Ability: At the start of your turn, any player of your choice including you gains 1 lifepoint 
         
 
-        Character char9 = new Character(1, true, 9, 9, 0, 0, 0, "Jesse Jones", false);
+        Character char9 = new Character(9, 9, "Jesse Jones");
         //Special Ability: If you have 4 or less lifepoints beer heals 2 lifepoints 
         
 
-        Character char10 = new Character(1, true, 8, 10, 0, 0, 0, "Slab The Killer", false);
+        Character char10 = new Character(8, 10, "Slab The Killer");
         //Special Ability: Can use beer as a shoot 1 or 2, takes 2 lifepoints away from targetted player 
         
 
-        Character char11 = new Character(1, true, 7, 11, 0, 0, 0, "Jourdonnais", false);
+        Character char11 = new Character(7, 11, "Jourdonnais");
         //Special Ability: Never lose more than 1 lifepoint to indians 
         
 
-        Character char12 = new Character(1, true, 8, 12, 0, 0, 0, "Suzy Lafayette", false);
+        Character char12 = new Character(8, 12, "Suzy Lafayette");
         //Special Ability: If you fail to roll any shoot 1 or 2, you gain 2 lifepoints 
         
 
-        Character char13 = new Character(1, true, 7, 13, 0, 0, 0, "Kit Carlson", false);
+        Character char13 = new Character(7, 13, "Kit Carlson");
         //Special Ability: For each gattling you roll you can remove one arrow from any player, including yourself if 3 gattlings are rolled 
         
 
-        Character char14 = new Character(1, true, 9, 14, 0, 0, 0, "Vulture Sam", false);
+        Character char14 = new Character(9, 14, "Vulture Sam");
         //Special Ability: When a player is eliminated you gain 2 lifepoints 
         
 
-        Character char15 = new Character(1, true, 8, 15, 0, 0, 0, "Lucky Duke", false);
+        Character char15 = new Character(8, 15, "Lucky Duke");
         //Special Ability: You get one extra re-roll 
         
 
-        Character char16 = new Character(1, true, 8, 16, 0, 0, 0, "Willy The Kid", false);
+        Character char16 = new Character(8, 16, "Willy The Kid");
         //Special Ability: Only need s2 gattling rolls to use the gattling gun 
         
 
@@ -395,6 +426,30 @@ public class Character
     }
     
     
+    public int changeHealth(int amtChange){
+        
+        int newHealthValue;
+        
+        int lifeStatus = 1;  // 1 if Character object is "alive," 0 if the Character object is "dead"
+        
+        newHealthValue = this.getHealth() + amtChange;
+        
+        if (newHealthValue <= 0){
+            this.setHealth(0);
+            this.setLifeStatus(false);
+            lifeStatus = 0;
+        } else {
+            if (newHealthValue > this.getMaxHealth())
+                this.setHealth(getMaxHealth());
+            else
+                this.setHealth(newHealthValue);
+        }
+        
+        return lifeStatus;   
+        
+    }
+    
+    
     public boolean isAlive() //Checks to see if a player is alive 
     {
         
@@ -475,6 +530,41 @@ public class Character
             
             System.out.println(player.toString());
         }
+        
+        System.out.println("PLAYER 1:");
+        player = playerList.get(0);
+        
+        System.out.println("Starting health: " + player.getHealth());
+        
+        player.changeHealth(-1);
+        
+        System.out.println("Health: " + player.getHealth());
+        
+        player.changeHealth(-9);
+        
+        System.out.println("Health: " + player.getHealth());
+        
+        System.out.println(player.getIsAlive());
+        
+        
+        System.out.println("PLAYER 2:");
+        player = playerList.get(1);
+        
+        System.out.println("Starting health: " + player.getHealth());
+        
+        System.out.println("Max health: " + player.getMaxHealth());
+        
+        player.changeHealth(-2);
+        
+        System.out.println("Health: " + player.getHealth());
+        
+        System.out.println(player.getIsAlive());
+        
+        player.changeHealth(20);
+        
+        System.out.println("Health: " + player.getHealth());
+        
+        System.out.println(player.getIsAlive());
 
     }
 
