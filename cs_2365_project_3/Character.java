@@ -40,7 +40,9 @@ public class Character
 
 
     public static ArrayList<Character> playerList = new ArrayList();
-    public static ArrayList<Character> dupeList = new ArrayList(16);
+    
+    public static ArrayList<Character> dupeList = new ArrayList(12);
+    
     
     public Character(int healthPts, int abilityCode, String characterName){
         
@@ -222,114 +224,95 @@ public class Character
     // Constructor Arguments:
     // int healthPts, int abilityCode, String characterName
             
-    public static void initializeAllCharacters() //Initializes all player objects and assigns them to an ArrayList
+    public static void initializeAllCharacters(boolean expansionPack) //Initializes all player objects and assigns them to an ArrayList
     {
         Character char1 = new Character(8, 1, "Bart Cassidy");
         //Special Ability: Can take an arrow instead of losing a lifepoint only to shoot 1 or 2 
        
 
-        Character char2 = new Character(9, 2, "Paul Regret");
+        Character char2 = new Character(9, 5, "Paul Regret");
         //Special Ability: Never lose lifepoints to the gattling gun 
-
-        Character char3 = new Character(8, 3, "Black Jack");
-        //Special Ability: Can re roll dynamite if 2 or less were rolled 
         
 
-        Character char4 = new Character(8, 4, "Pedro Ramirez");
+        Character char3 = new Character(8, 6, "Pedro Ramirez");
         //Special Ability: When you lose a lifepoint, you can discard an arrow 
         
 
-        Character char5 = new Character(8, 5, "Calamity Jane");
+        Character char4 = new Character(8, 2, "Calamity Janet");
         //Special Ability: Can use a shoot 1 as a 2 and vice versa 
     
 
-        Character char6 = new Character(9, 6, "Rose Doolan");
+        Character char5 = new Character(9, 7, "Rose Doolan");
         //Special Ability: Can use shoot 1 and 2 for players sitting one place further 
-     
-
-        Character char7 = new Character(7, 7, "El Gringo");
-        //Special Ability: When a player causes you to lose one or more lifepoints they take an arrow 
         
 
-        Character char8 = new Character(8, 8, "Sid Ketchum");
-        //Special Ability: At the start of your turn, any player of your choice including you gains 1 lifepoint 
-        
-
-        Character char9 = new Character(9, 9, "Jesse Jones");
+        Character char6 = new Character(9, 3, "Jesse Jones");
         //Special Ability: If you have 4 or less lifepoints beer heals 2 lifepoints 
         
 
-        Character char10 = new Character(8, 10, "Slab The Killer");
-        //Special Ability: Can use beer as a shoot 1 or 2, takes 2 lifepoints away from targetted player 
-        
-
-        Character char11 = new Character(7, 11, "Jourdonnais");
+        Character char7 = new Character(7, 4, "Jourdonnais");
         //Special Ability: Never lose more than 1 lifepoint to indians 
         
 
-        Character char12 = new Character(8, 12, "Suzy Lafayette");
-        //Special Ability: If you fail to roll any shoot 1 or 2, you gain 2 lifepoints 
-        
-
-        Character char13 = new Character(7, 13, "Kit Carlson");
-        //Special Ability: For each gattling you roll you can remove one arrow from any player, including yourself if 3 gattlings are rolled 
-        
-
-        Character char14 = new Character(9, 14, "Vulture Sam");
+        Character char8 = new Character(9, 8, "Vulture Sam");
         //Special Ability: When a player is eliminated you gain 2 lifepoints 
         
 
-        Character char15 = new Character(8, 15, "Lucky Duke");
-        //Special Ability: You get one extra re-roll 
-        
 
-        Character char16 = new Character(8, 16, "Willy The Kid");
-        //Special Ability: Only need s2 gattling rolls to use the gattling gun 
+        Character.dupeList.add(char1);
         
-
-        dupeList.add(char1);
+        Character.dupeList.add(char2);
         
-        dupeList.add(char2);
+        Character.dupeList.add(char3);
         
-        dupeList.add(char3);
+        Character.dupeList.add(char4);
         
-        dupeList.add(char4);
+        Character.dupeList.add(char5);
         
-        dupeList.add(char5);
+        Character.dupeList.add(char6);
         
-        dupeList.add(char6);
+        Character.dupeList.add(char7);
         
-        dupeList.add(char7);
+        Character.dupeList.add(char8);
         
-        dupeList.add(char8);
         
-        dupeList.add(char9);
+        if (expansionPack){
+            
+            Character charExp1 = new Character (9, 9, "Apache Kid");
+            
+            Character charExp2 = new Character(9, 10, "Bill Noface");
+            
+            Character charExp3 = new Character(8, 11, "Belle Star");
+            
+            Character charExp4 = new Character (7, 12, "Greg Digger");
+            
+            
+            Character.dupeList.add(charExp1);
+            
+            Character.dupeList.add(charExp2);
+            
+            Character.dupeList.add(charExp3);
+            
+            Character.dupeList.add(charExp4);
+            
+        }
         
-        dupeList.add(char10);
-        
-        dupeList.add(char11);
-        
-        dupeList.add(char12);
-        
-        dupeList.add(char13);
-        
-        dupeList.add(char14);
-        
-        dupeList.add(char15);
-        
-        dupeList.add(char16);
     }
-
     
-    public static void assignCharacters(int numPlayers) //Creates an ArrayList of randomly assigned characters, final version will pass in numPlayers
+    
+    public static void assignCharacters(int numPlayers, boolean expansionPack) //Creates an ArrayList of randomly assigned characters, final version will pass in numPlayers
     {
-        Character.initializeAllCharacters(); 
         
         Random rand = new Random();
         
         int randNum; 
         
-        int range = 16; 
+        int range;
+        
+        if (expansionPack)
+            range = 12;
+        else
+            range = 8;
         
         for (int i = 0; i < numPlayers; i++) 
         {
@@ -465,32 +448,6 @@ public class Character
     }
     
     
-    /*public void addArrow() //Adds an arrow to the player 
-    {
-        this.arrows ++; 
-        //Will need to also subract 1 from the piles of arrows 
-    }
-
-    
-    public int removeOneArrow(){
-        
-        this.arrows--;
-        
-        return 1;  // Returns 1 so that "one arrow" can be added back to pile of arrows in the game
-        
-    }
-    
-    
-    public int removeAllArrows(){
-        
-        int addBackArrows = this.arrows;
-        
-        this.arrows = 0;
-        
-        return addBackArrows;  // Returns number of arrows removed so that the value can be added back to the pile in the game
-    }*/
-    
-    
     public void changeArrows(int numArrows){
         
         this.arrows += numArrows;
@@ -516,9 +473,9 @@ public class Character
         
         Character player;
         
-        Character.initializeAllCharacters();
+        Character.initializeAllCharacters(true);
          
-        Character.assignCharacters(numPlayers);
+        Character.assignCharacters(numPlayers, true);
         
         Character.assignRole(numPlayers);
         
