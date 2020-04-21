@@ -461,6 +461,68 @@ public class Character
         
     }
     
+    
+    public static double aliveToDeadRatio(){
+        
+        int i;
+        
+        int numAlive = 0;
+        
+        int numDead = 0;
+        
+        double lifeRatio;
+        
+        Character player;
+        
+        for (i = 0; i < Character.playerList.size(); i++){
+            
+            player = Character.playerList.get(i);
+            
+            if (player.getIsAlive() == true)
+                numAlive += 1;
+            
+            else
+                numDead += 1;
+            
+        }
+        
+        if (numDead == 0)
+            lifeRatio = Double.MAX_VALUE;
+        else
+            lifeRatio = (double) numAlive/numDead;
+        
+        
+        return lifeRatio;
+        
+    }
+    
+    
+    public static double aliveToTotalRatio(){
+        
+        int i;
+        
+        int numAlive = 0;
+        
+        int numPlayers = Character.playerList.size();
+        
+        double lifeRatio;
+        
+        Character player;
+        
+        for (i = 0; i < numPlayers; i++){
+            
+            player = Character.playerList.get(i);
+            
+            if (player.getIsAlive() == true)
+                numAlive += 1;
+        }
+        
+        lifeRatio = (double) numAlive/numPlayers;
+        
+        
+        return lifeRatio;
+    }
+    
 
     /**
      * @param args the command line arguments
@@ -469,13 +531,13 @@ public class Character
     {
         int i;
         
-        int numPlayers = 5;
+        int numPlayers = 8;
         
         Character player;
         
-        Character.initializeAllCharacters(true);
+        Character.initializeAllCharacters(false);
          
-        Character.assignCharacters(numPlayers, true);
+        Character.assignCharacters(numPlayers, false);
         
         Character.assignRole(numPlayers);
         
@@ -488,40 +550,19 @@ public class Character
             System.out.println(player.toString());
         }
         
-        System.out.println("PLAYER 1:");
-        player = playerList.get(0);
+        System.out.println(Character.aliveToDeadRatio());
+        System.out.println(Character.aliveToTotalRatio());
         
-        System.out.println("Starting health: " + player.getHealth());
+        for (i = 0; i < 4; i++){
+            player = playerList.get(i);
+            
+            player.setLifeStatus(false);
+        }
         
-        player.changeHealth(-1);
-        
-        System.out.println("Health: " + player.getHealth());
-        
-        player.changeHealth(-9);
-        
-        System.out.println("Health: " + player.getHealth());
-        
-        System.out.println(player.getIsAlive());
+        System.out.println(Character.aliveToDeadRatio());
+        System.out.println(Character.aliveToTotalRatio());
         
         
-        System.out.println("PLAYER 2:");
-        player = playerList.get(1);
-        
-        System.out.println("Starting health: " + player.getHealth());
-        
-        System.out.println("Max health: " + player.getMaxHealth());
-        
-        player.changeHealth(-2);
-        
-        System.out.println("Health: " + player.getHealth());
-        
-        System.out.println(player.getIsAlive());
-        
-        player.changeHealth(20);
-        
-        System.out.println("Health: " + player.getHealth());
-        
-        System.out.println(player.getIsAlive());
 
     }
 
