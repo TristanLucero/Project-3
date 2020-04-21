@@ -33,6 +33,8 @@ public class Character
     
     private int arrows; //Number of die player does not re-roll
     
+    private boolean chiefsArrow; //Boolean value indicating whether or not the character holds the Indian Chief's arrow (expansion pack)
+    
     private boolean helpedSheriff; //Indicates whether or not the character has helped the Sheriff by providing him beer (health)
     
     private boolean shotSheriff; //Indicates whether or not the character has shot the Sheriff
@@ -121,6 +123,13 @@ public class Character
     }
     
     
+    public void setChiefsArrow(boolean hasChiefsArrow){
+        
+        this.chiefsArrow = hasChiefsArrow;
+        
+    }
+    
+    
     public void setName(String characterName){
         
         this.name = characterName;
@@ -194,6 +203,19 @@ public class Character
     public int getArrowCount(){
         
         return this.arrows;
+        
+    }
+    
+    
+    public boolean hasChiefsArrow(){
+        
+        boolean hasTheArrow = false;
+        
+        if (this.chiefsArrow == true)
+            hasTheArrow = true;
+        
+        return hasTheArrow;
+            
         
     }
     
@@ -497,6 +519,49 @@ public class Character
     }
     
     
+    public static int countAlive(){
+        
+        int i;
+        
+        int numAlive = 0;
+        
+        Character player;
+        
+        for (i = 0; i < Character.playerList.size(); i++){
+            
+            player = Character.playerList.get(i);
+            
+            if (player.getIsAlive() == true)
+                numAlive += 1;
+        }
+        
+        return numAlive;
+        
+    }
+    
+    
+    public static int countDead(){
+        
+        int i;
+        
+        int numDead = 0;
+        
+        Character player;
+        
+        for (i = 0; i < Character.playerList.size(); i++){
+            
+            player = Character.playerList.get(i);
+            
+            if (player.getIsAlive() == false)
+                numDead += 1;
+        }
+        
+        
+        return numDead;
+        
+    }
+    
+    
     public static double aliveToTotalRatio(){
         
         int i;
@@ -550,17 +615,17 @@ public class Character
             System.out.println(player.toString());
         }
         
-        System.out.println(Character.aliveToDeadRatio());
-        System.out.println(Character.aliveToTotalRatio());
+        System.out.println(Character.countAlive());
+        System.out.println(Character.countDead());
         
-        for (i = 0; i < 4; i++){
+        for (i = 0; i < 3; i++){
             player = playerList.get(i);
             
             player.setLifeStatus(false);
         }
         
-        System.out.println(Character.aliveToDeadRatio());
-        System.out.println(Character.aliveToTotalRatio());
+        System.out.println(Character.countAlive());
+        System.out.println(Character.countDead());
         
         
 
