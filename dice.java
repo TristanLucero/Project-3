@@ -87,8 +87,16 @@ public class Dice {
         if(diceRerolled[diceIndex] == true) //if dice is rerolled, you can't reroll it again
             return false;
         //-----------------------------------------CHANGE FOR EXPANSION-----------------------
-        if(diceArray[diceIndex] == 1) //if dice is dynamite, can't reroll
-            return false;
+        if(saloonDice[diceIndex] == true) //no dynamite with saloon, can always reroll
+            return true;
+        else if(deadOrAliveDice[diceIndex] == true) { //if dice is dynamite, can't reroll
+            if (diceArray[diceIndex] == 1)
+                return false;
+        }
+        else {
+            if(diceArray[diceIndex] == 1) //if dice is dynamite, can't reroll
+                return false;
+        }
         return true;
     }
 
@@ -160,7 +168,7 @@ public class Dice {
     }
 
     //calculate gatling and dynamite counts for the current dice in hand
-    //-------------------------------------NEED TO CHANGE FOR EXPANSION----------------------------------------------
+
     public void calcDiceCounts(){
         gatlingCount = 0;
         dynamiteCount = 0;
