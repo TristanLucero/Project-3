@@ -3,7 +3,7 @@ package com.company;
 import java.util.*;
 
 public class Dice {
-    static int diceArray[] = new int[6]; //each dice in the diceArray holds the value of the symbols
+    static int diceArray[] = new int[5]; //each dice in the diceArray holds the value of the symbols
     /*0 = arrow
       1 = dynamite
       2 = bull's eye "1"
@@ -11,79 +11,115 @@ public class Dice {
       4 = beer
       5 = gatling
     */
-    static boolean diceRerolled[] = new boolean[6]; //gets updated everytime a dice is rolled, so dice can't be rolled again
-    public int gatlingCount = 0; //how many times gatling has been rolled, default zero
-    private int rerollsPlayer = 0; //rerolls player has done in total
+    static boolean diceRerolled[] = new boolean[5]; //gets updated everytime a dice is rolled, so dice can't be rolled again
+    public static int gatlingCount = 0; //how many times gatling has been rolled, default zero
+    static private int rerollsPlayer = 0; //rerolls player has done in total
     public static int dynamiteCount = 0;
 
-    static private boolean saloonDice[] = new boolean[6];
-    static private boolean deadOrAliveDice[] = new boolean[6];
+    static private boolean saloonDice[] = new boolean[5];
+    static private boolean deadOrAliveDice[] = new boolean[5];
     static private boolean expansionUsed = false;
+    static public boolean gatlingUsed = false;
+
+    static public int arrowCount = 0;
 
 
     public void dice(){
     }
 
-    public Dice rollAllDice(Dice dice){
+    static public void rollAllDice(){
         Random rand = new Random();
         for (int i = 0; i < diceArray.length; i++) {
             diceArray[i] = rand.nextInt(6);
+
+            if(saloonDice[i] == false) //adds to arrow count if it runs into arrow
+                if(diceArray[i] == 0)
+                    arrowCount++;
+
         }
         calcDiceCounts();
-        return dice;
+    }
+
+    static public void zombieRollAllDice(){
+        Dice.dontUseExpansion();
+        Random rand = new Random();
+        for (int i = 0; i < 3; i++) {
+            diceArray[i] = rand.nextInt(6);
+            if(saloonDice[i] == false) //adds to arrow count if it runs into arrow
+                if(diceArray[i] == 0)
+                    arrowCount++;
+        }
+        calcDiceCounts();
     }
 
     //only rolls 1 dice, doesn't need array just uses index.
-    public Dice rollOneDice(Dice dice, int diceIndex){
-        if (canBeRerolled(dice, diceIndex)){
+    public void rollOneDice(int diceIndex){
+        if (canBeRerolled(diceIndex)){
             Random rand = new Random();
             diceArray[diceIndex] = rand.nextInt(6);
             diceRerolled[diceIndex] = true;
             rerollsPlayer++;
+
+            if(saloonDice[diceIndex] == false) //adds to arrow count if it runs into arrow
+                if(diceArray[diceIndex] == 0)
+                    arrowCount++;
         }
         calcDiceCounts();
-        return dice;
     }
 
     //Rerolled dice, up to the full amount of dice. Array values set to true will be rerolled if they can be.
-    public Dice rerollDice(Dice dice, boolean diceToReroll[]){
+    static public void rerollDice(boolean diceToReroll[]){
         Random rand = new Random();
         boolean diceHaveBeenRerolled = false; //will be set to true if any dice is rerolled
 
-        if(diceToReroll[0] == true && canBeRerolled(dice, 0)){
+        if(diceToReroll[0] == true && canBeRerolled(0)){
             diceArray[0] = rand.nextInt(6);
             diceRerolled[0] = true;
             diceHaveBeenRerolled = true;
+            if(saloonDice[0] == false) //adds to arrow count if it runs into arrow
+                if(diceArray[0] == 0)
+                    arrowCount++;
         }
-        if(diceToReroll[1] == true && canBeRerolled(dice, 1)){
+        if(diceToReroll[1] == true && canBeRerolled(1)){
             diceArray[1] = rand.nextInt(6);
             diceRerolled[1] = true;
             diceHaveBeenRerolled = true;
+            if(saloonDice[1] == false) //adds to arrow count if it runs into arrow
+                if(diceArray[1] == 0)
+                    arrowCount++;
         }
-        if(diceToReroll[2] == true && canBeRerolled(dice, 2)){
+        if(diceToReroll[2] == true && canBeRerolled(2)){
             diceArray[2] = rand.nextInt(6);
             diceRerolled[2] = true;
             diceHaveBeenRerolled = true;
+            if(saloonDice[2] == false) //adds to arrow count if it runs into arrow
+                if(diceArray[2] == 0)
+                    arrowCount++;
         }
-        if(diceToReroll[3] == true && canBeRerolled(dice, 3)){
+        if(diceToReroll[3] == true && canBeRerolled(3)){
             diceArray[3] = rand.nextInt(6);
             diceRerolled[3] = true;
             diceHaveBeenRerolled = true;
+            if(saloonDice[3] == false) //adds to arrow count if it runs into arrow
+                if(diceArray[3] == 0)
+                    arrowCount++;
         }
-        if(diceToReroll[4] == true && canBeRerolled(dice, 4)){
+        if(diceToReroll[4] == true && canBeRerolled(4)){
             diceArray[4] = rand.nextInt(6);
             diceRerolled[4] = true;
             diceHaveBeenRerolled = true;
+            if(saloonDice[4] == false) //adds to arrow count if it runs into arrow
+                if(diceArray[4] == 0)
+                    arrowCount++;
         }
         if (diceHaveBeenRerolled = true) {
             rerollsPlayer++;
             calcDiceCounts();
         }
-        return dice;
     }
 
     //checks to see if dice can be rerolled or not at the index provided
-    public boolean canBeRerolled(Dice dice, int diceIndex){
+    static public boolean canBeRerolled(int diceIndex){
         if(diceRerolled[diceIndex] == true) //if dice is rerolled, you can't reroll it again
             return false;
         //-----------------------------------------CHANGE FOR EXPANSION-----------------------
@@ -100,7 +136,7 @@ public class Dice {
         return true;
     }
 
-    public String toString(int symbolIndex){ //stopped here lately
+    static public String toString(int symbolIndex){ //stopped here lately
         String string = new String("");
         if(saloonDice[symbolIndex] == true){
             if(symbolIndex == 0)
@@ -148,9 +184,10 @@ public class Dice {
     }
 
     //if gatling is >= 3 returns true
-    public boolean gatlingReady(){
+    static public boolean gatlingReady(){
         if(gatlingCount >= 3) {
             gatlingCount = 0;
+            gatlingUsed = true;
             return true;
         }
         else
@@ -158,7 +195,7 @@ public class Dice {
     }
 
     //if dynamite is >= 3 returns true
-    public boolean dynamiteReady(){
+    static public boolean dynamiteReady(){
         if(dynamiteCount >= 3) {
             dynamiteCount = 0;
             return true;
@@ -169,7 +206,7 @@ public class Dice {
 
     //calculate gatling and dynamite counts for the current dice in hand
 
-    public void calcDiceCounts(){
+    static public void calcDiceCounts(){
         gatlingCount = 0;
         dynamiteCount = 0;
         for(int i = 0; i < diceArray.length; i++){
@@ -197,13 +234,13 @@ public class Dice {
     //2 deadOrAliveDice / black dice used automatically
     public static void useExpansion(int saloonDiceToUse){
         expansionUsed = true;
+        deadOrAliveDice[3] = true;
         deadOrAliveDice[4] = true;
-        deadOrAliveDice[5] = true;
         if(saloonDiceToUse == 1)
-            saloonDice[3] = true;
-        else if(saloonDiceToUse == 2){
             saloonDice[2] = true;
-            saloonDice[3] = true;
+        else if(saloonDiceToUse == 2){
+            saloonDice[1] = true;
+            saloonDice[2] = true;
         }
     }
 
