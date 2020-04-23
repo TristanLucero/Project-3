@@ -19,7 +19,13 @@ public class Character
      
     private int user; //0 for user, 1 for AI
     
-    private boolean isAlive;
+    private boolean isAlive; //True if character alive, false if character has been eliminated
+    
+    private boolean isZombieDead; //True if eliminated as a zombie and permanently removed from the game; otherwise, false
+    
+    private boolean isZombie; //True if character has re-entered game as a zombie (Undead or Alive expansion pack)
+    
+    private boolean isZombieMaster; //True if character with Renegade role has been designated as Zombie Master (Undead or Alive expansion pack)
     
     private String name; //Character name 
     
@@ -41,9 +47,9 @@ public class Character
     
 
 
-    public static ArrayList<Character> playerList = new ArrayList();
+    public static ArrayList<Character> playerList = new ArrayList<>();
     
-    public static ArrayList<Character> dupeList = new ArrayList(12);
+    public static ArrayList<Character> dupeList = new ArrayList<>(12);
     
     
     public Character(int healthPts, int abilityCode, String characterName){
@@ -51,6 +57,12 @@ public class Character
         this.setUser(1);
         
         this.setLifeStatus(true);
+        
+        //this.setZombieDead(false);
+        
+        this.setZombie(false);
+        
+        //this.setZombieMaster(false);
         
         this.setHealth(healthPts);
         
@@ -62,6 +74,8 @@ public class Character
         this.setRole(0);
         
         this.setArrowCount(0);
+        
+        //this.setChiefsArrow(false);
         
         this.setName(characterName);
         
@@ -85,6 +99,39 @@ public class Character
         this.isAlive = alive;
         
     }
+    
+    
+    /*public void setZombieDead(boolean zombieDead){
+        
+        if (zombieDead == true){
+            if (this.getZombieStatus() == true)
+                this.isZombieDead = zombieDead;
+            else
+                this.isZombieDead = false;
+        } else
+            this.isZombieDead = zombieDead;    
+        
+    }*/
+    
+    
+    public void setZombie(boolean zombieStatus){
+        
+        this.isZombie = zombieStatus;
+        
+    }
+    
+    
+    /*public void setZombieMaster(boolean zombieMasterStatus){
+        
+        if (zombieMasterStatus == true){
+            if (this.role == 4)
+                this.isZombieMaster = zombieMasterStatus;
+            else
+                this.isZombieMaster = false;
+        } else 
+            this.isZombieMaster = zombieMasterStatus;
+        
+    }*/
     
     
     public void setHealth(int healthPts){
@@ -123,11 +170,13 @@ public class Character
     }
     
     
-    public void setChiefsArrow(boolean hasChiefsArrow){
+    /*public void setChiefsArrow(boolean hasChiefsArrow){
         
         this.chiefsArrow = hasChiefsArrow;
         
-    }
+        //this.changeArrows(2);
+        
+    }*/
     
     
     public void setName(String characterName){
@@ -161,6 +210,27 @@ public class Character
     public boolean getIsAlive(){
         
         return this.isAlive;
+        
+    }
+    
+    
+    public boolean getIsZombieDead(){
+        
+        return this.isZombieDead;
+        
+    }
+    
+    
+    public boolean getZombieStatus(){
+        
+        return this.isZombie;
+        
+    }
+    
+    
+    public boolean getZombieMasterStatus(){
+        
+        return this.isZombieMaster;
         
     }
     
@@ -431,7 +501,7 @@ public class Character
     }
     
     
-    public int changeHealth(int amtChange){
+    public void changeHealth(int amtChange){
         
         int newHealthValue;
         
@@ -449,8 +519,7 @@ public class Character
             else
                 this.setHealth(newHealthValue);
         }
-        
-        return lifeStatus;   
+         
         
     }
     
@@ -588,7 +657,77 @@ public class Character
         return lifeRatio;
     }
     
+    
+    /*public static int setZombieMaster(int indexOfCurrPlayer){
+        
+        int renegadeCount = 0;
+        
+        int indexOfMaster = -1;
+        
+        ArrayList <Integer> renegadePositions = new ArrayList<>();
+        
+        Character player;
+        
+        int i;
+        
+        for (i = 0; i < Character.playerList.size(); i++){
+            player = Character.playerList.get(i);
+            if (player.getIsAlive() == true && player.getRoleNum() == 4){
+                
+                renegadeCount += 1;
+                
+                if (renegadeCount == 1)
+                    indexOfMaster = i;
+                
+                renegadePositions.add(i);
+                
+            }
+        }
+        
+        
+        if (renegadeCount == 2){
+            
+            int numDist1, numDist2;
+            
+            int trueDist1, trueDist2;
+            
+            
+            numDist1 = Math.abs(indexOfCurrPlayer - renegadePositions.get(0));
+            
+            if (numDist1 <= 4)
+                trueDist1 = numDist1;
+            else
+                trueDist1 = 8 - numDist1;
+            
+            
+            numDist2 = Math.abs(indexOfCurrPlayer - renegadePositions.get(1));
+            
+            if (numDist2 <= 4)
+                trueDist2 = numDist2;
+            else
+                trueDist2 = 8 - numDist2;
+            
+            if (trueDist1 < trueDist2)
+                indexOfMaster = renegadePositions.get(0);
+            else
+                indexOfMaster = renegadePositions.get(1);
+        }
+        
+        
+        if (renegadeCount > 0){
+        
+            player = Character.playerList.get(indexOfMaster);
+            
+            player.setZombieMaster(true);
+            
+        }
+        
+        return indexOfMaster;
+        
+    }*/
+    
 
+    
     /**
      * @param args the command line arguments
      */
@@ -614,6 +753,12 @@ public class Character
             
             System.out.println(player.toString());
         }
+        
+        player = Character.playerList.get(3);
+        
+        player.setChiefsArrow(true);
+        
+        System.out.println(player.hasChiefsArrow());
         
         System.out.println(Character.countAlive());
         System.out.println(Character.countDead());
