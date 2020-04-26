@@ -4,7 +4,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//package Project-3.cs_2365_project_3;
+//package Character Class;
 
 import java.util.Random; 
 import java.util.Arrays; 
@@ -45,7 +45,7 @@ public class Character
     
     private boolean shotSheriff;  // Indicates whether or not the character has shot the Sheriff
     
-    
+ 
     // ArrayList contains all available game characters; Characters to be used in 
     // gameplay are removed from dupeList and added to playerList
     public static ArrayList<Character> dupeList = new ArrayList<>(12);
