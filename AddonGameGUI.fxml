@@ -1,0 +1,746 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="javafxbanggui.AddonGameGUIController">
+    <children>
+      <TitledPane animated="false" layoutX="454.0" layoutY="14.0" prefHeight="192.0" prefWidth="425.0" text="Player 1">
+         <content>
+            <VBox prefHeight="154.0" prefWidth="365.0">
+               <children>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="79.0" prefWidth="404.0">
+                     <children>
+                        <ImageView fx:id="player1Character" fitHeight="80.0" fitWidth="251.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Calamity%20Janet.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets top="2.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <VBox prefHeight="200.0" prefWidth="100.0" />
+                        <VBox prefHeight="79.0" prefWidth="142.0">
+                           <children>
+                              <ImageView fx:id="player1Role" fitHeight="79.0" fitWidth="172.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Sherrif.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="46.0" prefWidth="293.0">
+                     <children>
+                        <VBox prefHeight="34.0" prefWidth="52.0">
+                           <children>
+                              <Label fx:id="p1HealthLBL" text="Health:" />
+                              <Label fx:id="p1ArrowLBL" text="Arrow:" />
+                           </children>
+                           <HBox.margin>
+                              <Insets top="20.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="54.0" prefWidth="39.0">
+                           <children>
+                              <Label text="S/HP">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="S/Arr" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ProgressBar fx:id="p1HealthBar" prefWidth="200.0" progress="0.0" />
+                              <ProgressBar fx:id="p1ArrowBar" prefWidth="200.0" progress="0.0" />
+                           </children>
+                           <HBox.margin>
+                              <Insets top="19.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="59.0" prefWidth="57.0">
+                           <children>
+                              <Label text="E/HP">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="E/Arrow" />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="5.0" top="20.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="59.0" prefWidth="0.0">
+                           <children>
+                              <ImageView fitHeight="1.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </content></TitledPane>
+      <TitledPane animated="false" layoutX="894.0" layoutY="14.0" prefHeight="192.0" prefWidth="425.0" text="Player 2">
+         <content>
+            <VBox prefHeight="154.0" prefWidth="365.0">
+               <children>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="79.0" prefWidth="404.0">
+                     <children>
+                        <ImageView fx:id="player2Character" fitHeight="80.0" fitWidth="251.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Jesse%20Jones.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets top="2.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <VBox prefHeight="200.0" prefWidth="100.0" />
+                        <VBox prefHeight="79.0" prefWidth="142.0">
+                           <children>
+                              <ImageView fx:id="player2Role" fitHeight="79.0" fitWidth="172.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Outlaw.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="46.0" prefWidth="293.0">
+                     <children>
+                        <VBox prefHeight="34.0" prefWidth="52.0">
+                           <children>
+                              <Label fx:id="p2HealthLBL" text="Health:" />
+                              <Label fx:id="p2ArrowLBL" text="Arrow:" />
+                           </children>
+                           <HBox.margin>
+                              <Insets top="20.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="54.0" prefWidth="39.0">
+                           <children>
+                              <Label text="S/HP">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="S/Arr" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ProgressBar fx:id="p2HealthBar" prefWidth="200.0" progress="0.0" />
+                              <ProgressBar fx:id="p2ArrowBar" prefWidth="200.0" progress="0.0" />
+                           </children>
+                           <HBox.margin>
+                              <Insets top="19.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="59.0" prefWidth="57.0">
+                           <children>
+                              <Label text="E/HP">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="E/Arrow" />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="5.0" top="20.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="59.0" prefWidth="0.0">
+                           <children>
+                              <ImageView fitHeight="1.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </content>
+      </TitledPane>
+      <TitledPane animated="false" layoutX="14.0" layoutY="14.0" prefHeight="192.0" prefWidth="425.0" text="Player 8" AnchorPane.bottomAnchor="417.0">
+         <content>
+            <VBox prefHeight="154.0" prefWidth="365.0">
+               <children>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="79.0" prefWidth="404.0">
+                     <children>
+                        <ImageView fx:id="player8Character" fitHeight="80.0" fitWidth="251.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Black%20Jack.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets top="2.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <VBox prefHeight="200.0" prefWidth="100.0" />
+                        <VBox prefHeight="79.0" prefWidth="142.0">
+                           <children>
+                              <ImageView fx:id="player8Role" fitHeight="79.0" fitWidth="172.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Renegade.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="46.0" prefWidth="293.0">
+                     <children>
+                        <VBox prefHeight="34.0" prefWidth="52.0">
+                           <children>
+                              <Label fx:id="p8HealthLBL" text="Health:" />
+                              <Label fx:id="p8ArrowLBL" text="Arrow:" />
+                           </children>
+                           <HBox.margin>
+                              <Insets top="20.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="54.0" prefWidth="39.0">
+                           <children>
+                              <Label text="S/HP">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="S/Arr" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ProgressBar fx:id="p8HealthBar" prefWidth="200.0" progress="0.0" />
+                              <ProgressBar fx:id="p8ArrowBar" prefWidth="200.0" progress="0.0" />
+                           </children>
+                           <HBox.margin>
+                              <Insets top="19.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="59.0" prefWidth="57.0">
+                           <children>
+                              <Label text="E/HP">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="E/Arrow" />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="5.0" top="20.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="59.0" prefWidth="0.0">
+                           <children>
+                              <ImageView fitHeight="1.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </content>
+      </TitledPane>
+      <TitledPane animated="false" layoutX="14.0" layoutY="216.0" prefHeight="192.0" prefWidth="425.0" text="Player 7">
+         <content>
+            <VBox prefHeight="154.0" prefWidth="365.0">
+               <children>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="79.0" prefWidth="404.0">
+                     <children>
+                        <ImageView fx:id="player7Character" fitHeight="80.0" fitWidth="251.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Kit%20Carlson.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets top="2.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <VBox prefHeight="200.0" prefWidth="100.0" />
+                        <VBox prefHeight="79.0" prefWidth="142.0">
+                           <children>
+                              <ImageView fx:id="player7Role" fitHeight="79.0" fitWidth="172.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Deputy.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="46.0" prefWidth="293.0">
+                     <children>
+                        <VBox prefHeight="34.0" prefWidth="52.0">
+                           <children>
+                              <Label fx:id="p7HealthLBL" text="Health:" />
+                              <Label fx:id="p7ArrowLBL" text="Arrow:" />
+                           </children>
+                           <HBox.margin>
+                              <Insets top="20.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="54.0" prefWidth="39.0">
+                           <children>
+                              <Label text="S/HP">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="S/Arr" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ProgressBar fx:id="p7HealthBar" prefWidth="200.0" progress="0.0" />
+                              <ProgressBar fx:id="p7ArrowBar" prefWidth="200.0" progress="0.0" />
+                           </children>
+                           <HBox.margin>
+                              <Insets top="19.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="59.0" prefWidth="57.0">
+                           <children>
+                              <Label text="E/HP">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="E/Arrow" />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="5.0" top="20.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="59.0" prefWidth="0.0">
+                           <children>
+                              <ImageView fitHeight="1.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </content>
+      </TitledPane>
+      <TitledPane animated="false" layoutX="14.0" layoutY="417.0" prefHeight="192.0" prefWidth="425.0" text="Player 6">
+         <content>
+            <VBox prefHeight="154.0" prefWidth="365.0">
+               <children>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="79.0" prefWidth="404.0">
+                     <children>
+                        <ImageView fx:id="player6Character" fitHeight="80.0" fitWidth="251.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Rose%20Doolan.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets top="2.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <VBox prefHeight="200.0" prefWidth="100.0" />
+                        <VBox prefHeight="79.0" prefWidth="142.0">
+                           <children>
+                              <ImageView fx:id="player6Role" fitHeight="79.0" fitWidth="172.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Renegade.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="46.0" prefWidth="293.0">
+                     <children>
+                        <VBox prefHeight="34.0" prefWidth="52.0">
+                           <children>
+                              <Label fx:id="p6HealthLBL" text="Health:" />
+                              <Label fx:id="p6ArrowLBL" text="Arrow:" />
+                           </children>
+                           <HBox.margin>
+                              <Insets top="20.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="54.0" prefWidth="39.0">
+                           <children>
+                              <Label text="S/HP">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="S/Arr" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ProgressBar fx:id="p6HealthBar" prefWidth="200.0" progress="0.0" />
+                              <ProgressBar fx:id="p6ArrowBar" prefWidth="200.0" progress="0.0" />
+                           </children>
+                           <HBox.margin>
+                              <Insets top="19.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="59.0" prefWidth="57.0">
+                           <children>
+                              <Label text="E/HP">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="E/Arrow" />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="5.0" top="20.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="59.0" prefWidth="0.0">
+                           <children>
+                              <ImageView fitHeight="1.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </content>
+      </TitledPane>
+      <TitledPane animated="false" layoutX="894.0" layoutY="216.0" prefHeight="192.0" prefWidth="425.0" text="Player 3">
+         <content>
+            <VBox prefHeight="154.0" prefWidth="365.0">
+               <children>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="79.0" prefWidth="404.0">
+                     <children>
+                        <ImageView fx:id="player3Character" fitHeight="80.0" fitWidth="251.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Willy%20The%20Kid.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets top="2.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <VBox prefHeight="200.0" prefWidth="100.0" />
+                        <VBox prefHeight="79.0" prefWidth="142.0">
+                           <children>
+                              <ImageView fx:id="player3Role" fitHeight="79.0" fitWidth="172.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Outlaw.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="46.0" prefWidth="293.0">
+                     <children>
+                        <VBox prefHeight="34.0" prefWidth="52.0">
+                           <children>
+                              <Label fx:id="p3HealthLBL" text="Health:" />
+                              <Label fx:id="p3ArrowLBL" text="Arrow:" />
+                           </children>
+                           <HBox.margin>
+                              <Insets top="20.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="54.0" prefWidth="39.0">
+                           <children>
+                              <Label text="S/HP">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="S/Arr" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ProgressBar fx:id="p3HealthBar" prefWidth="200.0" progress="0.0" />
+                              <ProgressBar fx:id="p3ArrowBar" prefWidth="200.0" progress="0.0" />
+                           </children>
+                           <HBox.margin>
+                              <Insets top="19.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="59.0" prefWidth="57.0">
+                           <children>
+                              <Label text="E/HP">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="E/Arrow" />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="5.0" top="20.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="59.0" prefWidth="0.0">
+                           <children>
+                              <ImageView fitHeight="1.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </content>
+      </TitledPane>
+      <TitledPane animated="false" layoutX="894.0" layoutY="417.0" prefHeight="192.0" prefWidth="425.0" text="Player 4">
+         <content>
+            <VBox prefHeight="154.0" prefWidth="365.0">
+               <children>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="79.0" prefWidth="404.0">
+                     <children>
+                        <ImageView fitHeight="80.0" fitWidth="251.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Slab%20The%20Killer.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets top="2.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <VBox prefHeight="200.0" prefWidth="100.0" />
+                        <VBox prefHeight="79.0" prefWidth="142.0">
+                           <children>
+                              <ImageView fitHeight="79.0" fitWidth="172.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Deputy.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="46.0" prefWidth="293.0">
+                     <children>
+                        <VBox prefHeight="34.0" prefWidth="52.0">
+                           <children>
+                              <Label fx:id="p4HealthLBL" text="Health:" />
+                              <Label fx:id="p4ArrowLBL" text="Arrow:" />
+                           </children>
+                           <HBox.margin>
+                              <Insets top="20.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="54.0" prefWidth="39.0">
+                           <children>
+                              <Label text="S/HP">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="S/Arr" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ProgressBar fx:id="p4HealthBar" prefWidth="200.0" progress="0.0" />
+                              <ProgressBar fx:id="p4ArrowBar" prefWidth="200.0" progress="0.0" />
+                           </children>
+                           <HBox.margin>
+                              <Insets top="19.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="59.0" prefWidth="57.0">
+                           <children>
+                              <Label text="E/HP">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="E/Arrow" />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="5.0" top="20.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="59.0" prefWidth="0.0">
+                           <children>
+                              <ImageView fitHeight="1.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </content>
+      </TitledPane>
+      <TitledPane animated="false" layoutX="454.0" layoutY="417.0" prefHeight="192.0" prefWidth="425.0" text="Player 5">
+         <content>
+            <VBox prefHeight="154.0" prefWidth="365.0">
+               <children>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="79.0" prefWidth="404.0">
+                     <children>
+                        <ImageView fx:id="player5Character" fitHeight="80.0" fitWidth="251.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Paul%20Regret.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets top="2.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <VBox prefHeight="200.0" prefWidth="100.0" />
+                        <VBox prefHeight="79.0" prefWidth="142.0">
+                           <children>
+                              <ImageView fx:id="player5Role" fitHeight="79.0" fitWidth="172.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Outlaw.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="46.0" prefWidth="293.0">
+                     <children>
+                        <VBox prefHeight="34.0" prefWidth="52.0">
+                           <children>
+                              <Label fx:id="p5HealthLBL" text="Health:" />
+                              <Label fx:id="p5ArrowLBL" text="Arrow:" />
+                           </children>
+                           <HBox.margin>
+                              <Insets top="20.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="54.0" prefWidth="39.0">
+                           <children>
+                              <Label text="S/HP">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="S/Arr" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ProgressBar fx:id="p5HealthBar" prefWidth="200.0" progress="0.0" />
+                              <ProgressBar fx:id="p5ArrowBar" prefWidth="200.0" progress="0.0" />
+                           </children>
+                           <HBox.margin>
+                              <Insets top="19.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="59.0" prefWidth="57.0">
+                           <children>
+                              <Label text="E/HP">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="E/Arrow" />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="5.0" top="20.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="59.0" prefWidth="0.0">
+                           <children>
+                              <ImageView fitHeight="1.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </content>
+      </TitledPane>
+      <TitledPane animated="false" layoutX="454.0" layoutY="216.0" prefHeight="192.0" prefWidth="425.0" text="Dice">
+         <content>
+            <VBox prefHeight="154.0" prefWidth="365.0">
+               <children>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="79.0" prefWidth="404.0">
+                     <children>
+                        <ImageView fx:id="dice1" fitHeight="63.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Gattling.png" />
+                           </image>
+                        </ImageView>
+                        <VBox prefHeight="76.0" prefWidth="19.0" />
+                        <ImageView fx:id="dice2" fitHeight="62.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Screen%20Shot%202020-04-05%20at%205.00.00%20PM.png" />
+                           </image>
+                        </ImageView>
+                        <VBox prefHeight="77.0" prefWidth="23.0" />
+                        <ImageView fx:id="dice3" fitHeight="84.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Beer.png" />
+                           </image>
+                        </ImageView>
+                        <VBox prefHeight="78.0" prefWidth="25.0" />
+                        <ImageView fx:id="dice4" fitHeight="72.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Shoot%201.png" />
+                           </image>
+                        </ImageView>
+                        <VBox prefHeight="78.0" prefWidth="27.0" />
+                        <ImageView fx:id="dice5" fitHeight="61.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Shoot%202.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="46.0" prefWidth="405.0">
+                     <children>
+                        <VBox prefHeight="43.0" prefWidth="83.0">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <children>
+                              <CheckBox fx:id="reRollD1" mnemonicParsing="false" text="ReRoll" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="43.0" prefWidth="83.0">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <children>
+                              <CheckBox fx:id="reRollD2" mnemonicParsing="false" text="ReRoll" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="43.0" prefWidth="91.0">
+                           <children>
+                              <CheckBox fx:id="reRollD3" mnemonicParsing="false" text="ReRoll" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="42.0" prefWidth="73.0">
+                           <children>
+                              <CheckBox fx:id="reRollD4" mnemonicParsing="false" prefHeight="18.0" prefWidth="75.0" text="ReRoll" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <CheckBox fx:id="reRollD5" mnemonicParsing="false" text="ReRoll">
+                                 <VBox.margin>
+                                    <Insets left="30.0" />
+                                 </VBox.margin>
+                              </CheckBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="27.0" prefWidth="403.0">
+                     <children>
+                        <Button fx:id="rollDiceBTN" mnemonicParsing="false" onAction="#rollDice" text="Roll Dice!" />
+                        <Button fx:id="reRollDiceBTN" mnemonicParsing="false" prefHeight="27.0" prefWidth="157.0" text="Re Roll Selected Dice!">
+                           <HBox.margin>
+                              <Insets left="170.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </content>
+      </TitledPane>
+   </children>
+</AnchorPane>
