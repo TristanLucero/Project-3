@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="449.0" prefWidth="492.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxbanggui.FXMLDocumentController">
+   <children>
+      <HBox layoutX="54.0" layoutY="45.0" prefHeight="155.0" prefWidth="384.0">
+         <children>
+            <Label prefHeight="113.0" prefWidth="387.0" text="Bang! The Dice Game">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox layoutX="42.0" layoutY="259.0" prefHeight="100.0" prefWidth="405.0">
+         <children>
+            <Button fx:id="playNormal" mnemonicParsing="false" onAction="#playNormalGame" prefHeight="27.0" prefWidth="151.0" text="Play A Normal Game" />
+            <Button fx:id="playAddon" mnemonicParsing="false" onAction="#playAddonGame" text="Play Game with Add-ons">
+               <HBox.margin>
+                  <Insets left="80.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

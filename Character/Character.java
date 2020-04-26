@@ -4,7 +4,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//package cs_2365_project_3;
+//package Project-3.cs_2365_project_3;
 
 import java.util.Random; 
 import java.util.Arrays; 
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author maxam
+ * @author lanegmacdougall
  */
 public class Character 
 {
