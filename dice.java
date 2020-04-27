@@ -27,6 +27,7 @@ public class Dice {
     public void dice(){
     }
 
+    //rolls all the dice in the dice array
     static public void rollAllDice(){
         Random rand = new Random();
         for (int i = 0; i < diceArray.length; i++) {
@@ -40,6 +41,7 @@ public class Dice {
         calcDiceCounts();
     }
 
+    //rolls dice 0-2 for zombie characters
     static public void zombieRollAllDice(){
         Dice.dontUseExpansion();
         Random rand = new Random();
@@ -53,7 +55,7 @@ public class Dice {
     }
 
     //only rolls 1 dice, doesn't need array just uses index.
-    public void rollOneDice(int diceIndex){
+    static public void rerollOneDice(int diceIndex){
         if (canBeRerolled(diceIndex)){
             Random rand = new Random();
             diceArray[diceIndex] = rand.nextInt(6);
@@ -136,9 +138,9 @@ public class Dice {
         return true;
     }
 
-    static public String toString(int symbolIndex){ //stopped here lately
+    static public String toString(int diceNum, int symbolIndex){ //stopped here lately
         String string = new String("");
-        if(saloonDice[symbolIndex] == true){
+        if(saloonDice[diceNum] == true){
             if(symbolIndex == 0)
                 string = "Broken Arrow";
             else if(symbolIndex == 1)
@@ -152,7 +154,7 @@ public class Dice {
             else if(symbolIndex == 5)
                 string = "Double Gatling";
         }
-        else if(deadOrAliveDice[symbolIndex] == true){
+        else if(deadOrAliveDice[diceNum] == true){
             if(symbolIndex == 0)
                 string = "Indian Arrow";
             else if(symbolIndex == 1)
@@ -212,7 +214,7 @@ public class Dice {
         for(int i = 0; i < diceArray.length; i++){
             if(saloonDice[i] == true){
                 if(diceArray[i] == 5)
-                    gatlingCount++;
+                    gatlingCount += 2;
             }
             if(deadOrAliveDice[i] == true){
                 if(diceArray[i] == 5)
@@ -250,8 +252,91 @@ public class Dice {
         for (int i = 0; i < diceArray.length; i++) {
             deadOrAliveDice[i] = false;
             saloonDice[i] = false;
-            System.out.println(i);
         }
+    }
+
+    //tests dice class
+    private static void testDiceClass(){
+        System.out.println("----------------TESTING DICE CLASS----------------");
+        System.out.println("Testing diceArray[] blank values, expected values should be all zero.");
+        for(int i = 0; i < 5; i++)
+            System.out.print(diceArray[i] + " ");
+        System.out.println("\n");
+
+
+        System.out.println("Testing rollAllDice(), should be random dice values displayed between 0-5");
+        rollAllDice();
+        for(int i = 0; i < 5; i++)
+            System.out.print(diceArray[i] + " ");
+        System.out.println("\n");
+
+        System.out.println("Testing arrowCount, should be updated based on number of arrow in the last hand (gets reset by game class only)");
+        System.out.println("Arrow Count: " + arrowCount + "\n");
+
+        System.out.println("Testing zombieRollAllDice(), only first 3 should be rolled dice from 0-5");
+        zombieRollAllDice();
+        for(int i = 0; i < 5; i++)
+            System.out.print(diceArray[i] + " ");
+        System.out.println("\n");
+
+        System.out.println("Testing rollOneDice(), only the 5th dice should be rolled/rerolled if it's not dynamite (1)");
+        rerollOneDice(4);
+        for(int i = 0; i < 5; i++)
+            System.out.print(diceArray[i] + " ");
+        System.out.println("\n");
+
+        System.out.println("Testing rerollDice(), should reroll all the dice except for 5 which has already been rerolled");
+        boolean[] myBoolArr = new boolean[] {true, true, true, true, true};
+        rerollDice(myBoolArr);
+        for(int i = 0; i < 5; i++)
+            System.out.print(diceArray[i] + " ");
+        System.out.println("\n");
+
+        System.out.println("Testing toString(), should return string name the 1st dice in the array at index 0");
+        System.out.println(Dice.toString(0, diceArray[0]) + "\n");
+
+        System.out.println("Testing gatlingReady(), should print 'true' is >= 3 gatling dice, which is index 5 on normal dice");
+        for(int i = 0; i < 5; i++)
+            System.out.print(diceArray[i] + " ");
+        System.out.println(gatlingReady());
+        System.out.println();
+
+
+        System.out.println("Testing dynamiteReady(), should print 'true' is >= 3 dynamite dice, which is index 1 on normal dice");
+        for(int i = 0; i < 5; i++)
+            System.out.print(diceArray[i] + " ");
+        System.out.println(dynamiteReady() + "\n");
+
+        System.out.println("Testing calcDiceCounts(), should update gatlingCount & dynamiteCount variables to current dynamite (index 1) and gatling (index 5) in hand");
+        for(int i = 0; i < 5; i++)
+            System.out.print(diceArray[i] + " ");
+        calcDiceCounts();
+        System.out.println();
+        System.out.println("Gatling count: " + gatlingCount);
+        System.out.println("Dynamite count: " + dynamiteCount + "\n");
+
+        System.out.println("Testing useExpansion(), should update deadOrAliveDice[3] and deadOrAliveDice[4] " +
+                "to be true, and saloonDice[2] and saloonDice[1] to be true since 2 is passed");
+        useExpansion(2);
+        System.out.print("deadOfAliveDice[] array printed: ");
+        for(int i = 0; i < 5; i++)
+            System.out.print(deadOrAliveDice[i] + " ");
+        System.out.println();
+        System.out.print("saloonDice[] array printed: ");
+        for(int i = 0; i < 5; i++)
+            System.out.print(saloonDice[i] + " ");
+        System.out.println("\n");
+
+        System.out.println("Testing dontUseExpansion(), should update deadOrAliveDice[] to be full of false values, and saloonDice[] to be full of false values");
+        dontUseExpansion();
+        System.out.print("deadOfAliveDice[] array printed: ");
+        for(int i = 0; i < 5; i++)
+            System.out.print(deadOrAliveDice[i] + " ");
+        System.out.println();
+        System.out.print("saloonDice[] array printed: ");
+        for(int i = 0; i < 5; i++)
+            System.out.print(saloonDice[i] + " ");
+        System.out.println("\n");
     }
 
     public static void main(String[] args) {
